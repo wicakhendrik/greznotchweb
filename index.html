@@ -1,0 +1,347 @@
+<!doctype html>
+<!--
+  Kuncung landing page (statis, tanpa build).
+  Repo: github.com/wicakhendrik/kuncungweb · GitHub Pages: branch main, folder / (root).
+-->
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Kuncung — notch yang hidup untuk Windows</title>
+    <meta name="description" content="Kuncung: dynamic island untuk Windows 10 &amp; 11. Musik berlirik, saham IDX &amp; US, kripto, emas &amp; perak, MotoGP, F1 dan sepak bola, jadwal shalat, kalender, dan asisten AI dalam satu pill di tepi layar. Ringan, lokal, tanpa akun." />
+    <meta name="theme-color" content="#05070d" />
+    <meta property="og:title" content="Kuncung — notch yang hidup untuk Windows" />
+    <meta property="og:description" content="Musik berlirik, market, olahraga, shalat, kalender, dan AI dalam satu pill di tepi layar. 9 gaya termasuk batik, dua bahasa, ringan, lokal." />
+    <meta property="og:url" content="https://kuncung.grezly.app/" />
+    <link rel="canonical" href="https://kuncung.grezly.app/" />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Hanken+Grotesk:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&family=Fraunces:opsz,wght@9..144,600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/style.css" />
+    <noscript><style>.reveal{opacity:1;transform:none}.gn{display:none}</style></noscript>
+  </head>
+  <body>
+    <a class="skip" href="#main">Lewati ke konten</a>
+
+    <!-- ============ NOTCH LIVE (fixed di tepi atas halaman) ============ -->
+    <div class="gn" id="gn" data-nt="parang" data-state="closed">
+      <div class="gn-pill" id="gn-pill">
+        <div class="gn-fx" aria-hidden="true"><i></i><i></i></div>
+        <span class="gn-mascot" data-kc aria-hidden="true"></span>
+        <div class="gn-layer gn-closed" id="gn-closed"></div>
+        <div class="gn-layer gn-peek" id="gn-peek" aria-live="polite"></div>
+        <div class="gn-layer gn-open" id="gn-open">
+          <nav class="gn-rail" id="gn-rail" aria-label="Tampilan notch"></nav>
+          <div class="gn-main">
+            <header class="gn-head">
+              <div>
+                <h3 id="gn-title">Beranda</h3>
+                <span id="gn-sub"></span>
+              </div>
+              <button class="gn-x" id="gn-close" aria-label="Tutup notch">
+                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12" /></svg>
+              </button>
+            </header>
+            <div class="gn-view" id="gn-view"></div>
+          </div>
+        </div>
+        <button class="gn-toggle" id="gn-toggle" aria-expanded="false" aria-controls="gn-open" aria-label="Buka demo notch Kuncung"></button>
+      </div>
+    </div>
+
+    <header class="topbar">
+      <a class="logo" href="#top" aria-label="Kuncung, ke atas">
+        <svg viewBox="0 0 1024 1024" width="26" height="26" aria-hidden="true">
+  <!-- Ikon Kuncung: lingkaran dengan poni, kuncung, dan mata. Minimalis, flat. -->
+  <rect width="1024" height="1024" rx="232" fill="#FFC93C"/>
+  <g transform="translate(92 70) scale(8.4)">
+    <circle cx="50" cy="58" r="36" fill="#FFF3DB"/>
+    <!-- poni -->
+    <path d="M16.8 44 A36 36 0 0 1 83.2 44 C82 49 78 51 74 47 C70 43 65 43 62 48 C59 53 54 52 51 47 C48 42 43 42 40 48 C37 53 31 53 28 47 C25 43 20 42 16.8 44Z" fill="#2B1B14"/>
+    <!-- kuncung -->
+    <path d="M45.5 25.5 C38.5 15 42.5 3.5 53.5 3.2 C62.5 3 68.5 9.4 65.2 16.2 C63.4 11.4 58.2 10.2 55.2 13 C52.8 15.4 54.6 19.4 58.6 20.8 C55.8 25.8 49.6 27.8 45.5 25.5Z" fill="#2B1B14"/>
+    <!-- mata -->
+    <circle cx="38" cy="66" r="5.6" fill="#2B1B14"/>
+    <circle cx="62" cy="66" r="5.6" fill="#2B1B14"/>
+    <circle cx="39.9" cy="63.9" r="1.8" fill="#FFF3DB"/>
+    <circle cx="63.9" cy="63.9" r="1.8" fill="#FFF3DB"/>
+  </g>
+</svg>
+        <span>Kuncung</span>
+      </a>
+      <nav class="topnav" aria-label="Navigasi utama">
+        <a href="#fitur">Fitur</a>
+        <a href="#tab">Pintar</a>
+        <a href="#gaya">Gaya</a>
+        <a href="#unduh">Unduh</a>
+        <a class="gh" href="https://github.com/wicakhendrik/kuncung" rel="noopener">GitHub ↗</a>
+      </nav>
+    </header>
+
+    <!-- garis sinyal (progres scroll) -->
+    <div class="sline" id="sline" aria-hidden="true"><i class="sline-fill" id="sline-fill"></i></div>
+
+    <main id="main">
+      <!-- ================= HERO ================= -->
+      <section class="hero" id="top">
+        <div class="wrap hero-grid">
+          <div class="hero-copy">
+            <p class="eyebrow reveal"><span class="kc-inline" data-kc aria-hidden="true"></span> Kuncung · untuk Windows 10 &amp; 11</p>
+            <h1 class="reveal" style="--d: 80ms">
+              Notch yang<br /><span class="live">hidup<svg viewBox="0 0 200 26" preserveAspectRatio="none" aria-hidden="true"><path d="M0 14H58l9-9 12 19 11-14 9 4H200" /></svg></span>
+              <br />untuk Windows.
+            </h1>
+            <p class="lede reveal" style="--d: 180ms">
+              Musik berlirik, saham &amp; emas, jadwal shalat, kalender, dan asisten AI &mdash; semuanya dalam satu pill di tepi layar.
+              Ringan, tanpa akun, datamu tetap di perangkatmu.
+            </p>
+            <div class="cta reveal" style="--d: 280ms">
+              <a class="btn primary" href="#unduh">Unduh untuk Windows</a>
+              <a class="btn ghost" href="https://github.com/wicakhendrik/kuncung" rel="noopener">Lihat di GitHub ↗</a>
+            </div>
+            <p class="hint reveal" style="--d: 360ms">
+              <span class="arrow" aria-hidden="true">↑</span>
+              Itu bukan gambar. Arahkan kursor ke notch di atas halaman ini (atau ketuk di layar sentuh).
+            </p>
+          </div>
+
+          <div class="hero-art" id="hero-art" aria-hidden="true">
+            <div class="fcard fc-market">
+              <div class="fc-h"><span>Market</span><b class="demo-tag">demo</b></div>
+              <div id="fc-rows"></div>
+            </div>
+            <div class="fcard fc-lyric">
+              <div class="fc-h"><span>Midnight Signal</span><i class="eqs"><u></u><u></u><u></u><u></u></i></div>
+              <p class="ly-a" id="fc-ly-a">Lampu kota menyala pelan</p>
+              <p class="ly-b" id="fc-ly-b">Kita berjalan tanpa tujuan</p>
+            </div>
+            <div class="fcard fc-ring">
+              <svg viewBox="0 0 84 84" width="84" height="84"><circle cx="42" cy="42" r="35" fill="none" stroke="var(--line)" stroke-width="6" /><circle id="fc-ring-c" cx="42" cy="42" r="35" fill="none" stroke="var(--gold)" stroke-width="6" stroke-linecap="round" stroke-dasharray="220" stroke-dashoffset="70" transform="rotate(-90 42 42)" /></svg>
+              <div><small>Menuju Maghrib</small><b id="fc-ring-t">0j 48m</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="wrap facts reveal" style="--d: 440ms">
+          <div><b>2,6 MB</b><span>ukuran installer</span></div>
+          <div><b>±50 MB</b><span>RAM saat berjalan</span></div>
+          <div><b>9 gaya</b><span>termasuk tiga tema batik</span></div>
+          <div><b>0 akun</b><span>tanpa daftar, tanpa telemetri</span></div>
+        </div>
+      </section>
+
+      <!-- ================= FITUR (explorer) ================= -->
+      <section class="sec" id="fitur" data-label="Fitur">
+        <div class="wrap">
+          <header class="sec-h reveal">
+            <p class="eyebrow">01 — Fitur</p>
+            <h2>Satu pill.<br />Segalanya di ujung kursor.</h2>
+            <p class="lede">Pilih salah satu di bawah ini. Setiap tampilan adalah replika yang bisa kamu klik, ketik, dan coba langsung.</p>
+          </header>
+
+          <div class="explorer">
+            <div class="ex-list reveal" role="tablist" aria-label="Fitur Kuncung" aria-orientation="vertical" id="ex-list">
+              <button role="tab" id="exb-market" aria-selected="true" aria-controls="ex-stage" data-view="market" tabindex="0"><span class="n">01</span><span class="t">Market</span><span class="d">Kripto, saham IDX &amp; US, emas, perak, kurs.</span></button>
+              <button role="tab" id="exb-sports" aria-selected="false" aria-controls="ex-stage" data-view="sports" tabindex="-1"><span class="n">02</span><span class="t">Olahraga</span><span class="d">MotoGP, F1, dan liga sepak bola.</span></button>
+              <button role="tab" id="exb-music" aria-selected="false" aria-controls="ex-stage" data-view="music" tabindex="-1"><span class="n">03</span><span class="t">Musik &amp; lirik</span><span class="d">Lirik tersinkron, warna tepi dari cover album.</span></button>
+              <button role="tab" id="exb-prayer" aria-selected="false" aria-controls="ex-stage" data-view="prayer" tabindex="-1"><span class="n">04</span><span class="t">Shalat</span><span class="d">Dihitung offline, musik otomatis jeda.</span></button>
+              <button role="tab" id="exb-calendar" aria-selected="false" aria-controls="ex-stage" data-view="calendar" tabindex="-1"><span class="n">05</span><span class="t">Kalender</span><span class="d">Langganan iCal, pengingat, tombol Join.</span></button>
+              <button role="tab" id="exb-ai" aria-selected="false" aria-controls="ex-stage" data-view="ai" tabindex="-1"><span class="n">06</span><span class="t">Asisten AI</span><span class="d">Claude, OpenAI, Gemini, atau Ollama lokal.</span></button>
+              <button role="tab" id="exb-deck" aria-selected="false" aria-controls="ex-stage" data-view="deck" tabindex="-1"><span class="n">07</span><span class="t">Deck</span><span class="d">Tombol cepat: pintasan, app, link, perintah.</span></button>
+              <button role="tab" id="exb-focus" aria-selected="false" aria-controls="ex-stage" data-view="focus" tabindex="-1"><span class="n">08</span><span class="t">Fokus &amp; tugas</span><span class="d">Pomodoro dan to-do bahasa natural.</span></button>
+              <button role="tab" id="exb-translate" aria-selected="false" aria-controls="ex-stage" data-view="translate" tabindex="-1"><span class="n">09</span><span class="t">Translate</span><span class="d">Terjemahkan teks, 32 bahasa.</span></button>
+              <button role="tab" id="exb-notif" aria-selected="false" aria-controls="ex-stage" data-view="notif" tabindex="-1"><span class="n">10</span><span class="t">Notifikasi</span><span class="d">Pesan masuk muncul di notch (opsional).</span></button>
+            </div>
+
+            <div class="ex-stage reveal" id="ex-stage" role="tabpanel" aria-live="polite" tabindex="0">
+              <div class="ex-frame" id="ex-frame" data-nt="parang">
+                <header class="ex-bar"><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><b id="ex-title">Market</b><span class="ex-tag">replika interaktif</span></header>
+                <div class="gn-view ex-view" id="ex-view"></div>
+              </div>
+              <p class="ex-desc" id="ex-desc"></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= PINTAR: deteksi tab ================= -->
+      <section class="sec" id="tab" data-label="Pintar">
+        <div class="wrap">
+          <header class="sec-h reveal">
+            <p class="eyebrow">02 — Tahu kapan harus minggir</p>
+            <h2>Tidak menutupi<br />tab browsermu.</h2>
+            <p class="lede">
+              Notch di tengah atas layar bisa menimpa tab Chrome. Kuncung membaca <em>posisi</em> tab (bukan judul atau isinya) lalu mengecil jadi garis tipis tepat saat tab sampai di bawahnya.
+              Tambah tab pada simulasi ini dan lihat sendiri.
+            </p>
+          </header>
+
+          <div class="tabdemo reveal">
+            <div class="browser" id="browser" aria-hidden="true">
+              <div class="b-top">
+                <div class="b-tabs" id="b-tabs"></div>
+                <span class="dots"><i></i><i></i><i></i></span>
+              </div>
+              <div class="b-bar"><span class="b-url"></span></div>
+              <div class="b-body"><i></i><i></i><i></i><i></i></div>
+              <div class="td-zone" id="td-zone"><span>zona notch</span></div>
+              <div class="td-notch" id="td-notch" data-nt="parang" data-thin="false"><div class="td-pill"><span class="td-txt">BTC <b class="up">+1,3%</b></span></div></div>
+            </div>
+
+            <div class="td-ctrl">
+              <label for="td-range" class="td-label">Jumlah tab terbuka: <b id="td-n">1</b></label>
+              <input type="range" id="td-range" min="1" max="14" value="1" step="1" aria-describedby="td-readout" />
+              <p class="td-readout" id="td-readout" role="status"></p>
+              <div class="td-row">
+                <button class="chip-toggle" id="td-smart" aria-pressed="true"><i></i><span>Deteksi tab cerdas</span></button>
+                <small>Dimatikan: notch mengecil setiap kali browser memenuhi tepi atas, berapa pun tab-nya.</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= GAYA ================= -->
+      <section class="sec" id="gaya" data-label="Gaya">
+        <div class="wrap">
+          <header class="sec-h reveal">
+            <p class="eyebrow">03 — Gaya</p>
+            <h2>Sembilan gaya.<br />Satu klik di Pengaturan.</h2>
+            <p class="lede">Pilih salah satu: notch di atas halaman ini dan seluruh warna situs ikut berganti. Ada tiga tema batik baru (Parang, Kawung, Mega Mendung). Setiap gaya bisa dipadukan dengan bentuk (menempel atau melayang), ukuran S/M/L, posisi, dan warna aksen.</p>
+          </header>
+        </div>
+        <div class="strips reveal" id="strips" role="group" aria-label="Pilih gaya notch"></div>
+      </section>
+
+      <!-- ================= MARKET BAND ================= -->
+      <section class="band" id="market" data-label="Market" aria-label="Contoh data market">
+        <div class="wrap band-h reveal">
+          <p class="eyebrow">04 — Market</p>
+          <h2>Pantau pasar<br />tanpa buka tab baru.</h2>
+        </div>
+        <div class="marq" aria-hidden="true"><div class="marq-track" id="marq-track"></div></div>
+        <div class="wrap mfacts reveal">
+          <div><b>Alert harga</b><p>Pasang batas naik/turun per simbol. Notch berbunyi dan menampilkan notifikasi saat tembus.</p></div>
+          <div><b>Emas &amp; perak dalam Rupiah</b><p>Harga spot per gram, dihitung dari XAU/XAG × USD/IDR. Belum termasuk premi ritel seperti Antam.</p></div>
+          <div><b>Watchlist milikmu</b><p>Cari simbol apa pun, pin ke ticker notch, dan pilih kripto dalam USD atau Rupiah.</p></div>
+        </div>
+        <p class="wrap fine">Angka di halaman ini adalah <strong>data demo</strong>. Di aplikasi, harga berasal dari Yahoo Finance dan tertunda sekitar 15 menit untuk sebagian bursa.</p>
+      </section>
+
+      <!-- ================= LOKAL ================= -->
+      <section class="sec" id="lokal" data-label="Lokal">
+        <div class="wrap lokal">
+          <header class="sec-h reveal">
+            <p class="eyebrow">05 — Lokal &amp; ringan</p>
+            <h2>Ringan.<br />Lokal.<br />Tanpa akun.</h2>
+          </header>
+          <ul class="privacy reveal">
+            <li><b>Dibangun dengan Rust &amp; Tauri</b><span>Bukan Electron. Installer 2,6 MB dan memori sekitar 50 MB saat berjalan.</span></li>
+            <li><b>API key di Windows Credential Manager</b><span>Kunci AI-mu tidak pernah masuk ke berkas pengaturan, dan hanya dibaca oleh sisi native aplikasi.</span></li>
+            <li><b>Notifikasi itu opsional</b><span>Mati secara bawaan, butuh izin Windows, dan isinya bisa disembunyikan saat berbagi layar.</span></li>
+            <li><b>Tanpa telemetri</b><span>Aplikasi hanya menghubungi layanan yang memang kamu pakai: harga, lirik, cuaca, data olahraga, kalender, dan penyedia AI pilihanmu.</span></li>
+            <li><b>Pembacaan tab hanya posisi</b><span>Deteksi tab memakai UI Automation Windows untuk membaca letak tab, bukan judul atau isi halaman.</span></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ================= UNDUH ================= -->
+      <section class="sec dl" id="unduh" data-label="Unduh">
+        <div class="wrap dl-grid">
+          <div class="reveal">
+            <p class="eyebrow">06 — Unduh</p>
+            <h2>Pasang dalam<br />semenit.</h2>
+            <ol class="steps">
+              <li><b>Unduh installer</b><span>Berkas <code id="dl-file">Kuncung_0.1.0_x64-setup.exe</code>, diunduh langsung dari situs ini.</span></li>
+              <li><b>Jalankan</b><span>Installer berjalan per pengguna, tanpa hak administrator.</span></li>
+              <li><b>Arahkan kursor ke tepi atas layar</b><span>Notch muncul di tengah. Arahkan kursor untuk membukanya, lalu pilih menu di rail kiri. Bahasa bawaannya English; ganti ke Indonesia di Pengaturan.</span></li>
+            </ol>
+            <div class="cta">
+              <a class="btn primary" id="dl-btn" href="downloads/Kuncung_0.1.0_x64-setup.exe" download>Unduh v0.1.0 (2,64 MB)</a>
+              <a class="btn ghost" href="https://github.com/wicakhendrik/kuncung" rel="noopener">Kode sumber ↗</a>
+            </div>
+            <p class="fine">Windows 10 atau Windows 11, 64-bit, dengan WebView2 (sudah ada di Windows 11). <span id="dl-meta">Ukuran 2,64 MB · SHA-256: <code>bf827f687d8b9ee6b1cd2172014041002613ed1c777ce347c7d4adda839bf941</code></span></p>
+            <div class="callout" role="note">
+              <b>Tentang peringatan SmartScreen</b>
+              <p>Installer ini belum ditandatangani dengan sertifikat penerbit, jadi Windows bisa menampilkan “Windows protected your PC”. Klik <em>Informasi lebih lanjut</em> lalu <em>Tetap jalankan</em>. Kamu juga bisa membangunnya sendiri dari kode sumber.</p>
+            </div>
+          </div>
+
+          <div class="term reveal" aria-label="Perintah membangun dari sumber">
+            <header><span class="dots" aria-hidden="true"><i></i><i></i><i></i></span><b>bangun dari sumber</b>
+              <button class="copy" id="copy-btn" data-copy="git clone https://github.com/wicakhendrik/kuncung.git&#10;cd kuncung&#10;npm install&#10;npm run tauri build">Salin</button>
+            </header>
+<pre><code><span class="c"># prasyarat: Node.js, Rust (MSVC), WebView2</span>
+<span class="p">$</span> git clone https://github.com/wicakhendrik/kuncung.git
+<span class="p">$</span> cd kuncung
+<span class="p">$</span> npm install
+<span class="p">$</span> npm run tauri build
+<span class="c"># installer: src-tauri/target/release/bundle/nsis</span></code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= FAQ ================= -->
+      <section class="sec" id="faq" data-label="FAQ">
+        <div class="wrap faq">
+          <header class="sec-h reveal">
+            <p class="eyebrow">07 — Pertanyaan</p>
+            <h2>Sebelum kamu<br />bertanya.</h2>
+          </header>
+          <div class="faq-list reveal">
+            <details><summary>Dari mana data harga berasal, dan seakurat apa?</summary><p>Dari Yahoo Finance, tertunda sekitar 15 menit untuk sebagian bursa. Emas dan perak dalam Rupiah adalah harga <em>spot</em> (XAU/XAG × USD/IDR) dan belum termasuk premi ritel seperti harga Antam. Jangan dipakai sebagai satu-satunya dasar keputusan investasi.</p></details>
+            <details><summary>Apakah jadwal shalatnya sama persis dengan Kemenag?</summary><p>Dihitung offline di perangkatmu dengan metode Kemenag RI (juga tersedia MWL, ISNA, dan Umm al-Qura). Bisa berbeda satu sampai dua menit dari jadwal resmi, dan zona waktunya mengikuti Windows. Bandingkan dengan jadwal resmi untuk kotamu.</p></details>
+            <details><summary>Kenapa Windows menampilkan peringatan SmartScreen?</summary><p>Karena installer belum ditandatangani dengan sertifikat penerbit (sertifikat semacam itu berbayar). Ini normal untuk aplikasi baru. Kamu bisa memeriksa kode sumbernya atau membangun installer sendiri.</p></details>
+            <details><summary>Apakah ada data yang dikirim ke server kalian?</summary><p>Tidak ada server Kuncung dan tidak ada telemetri. Aplikasi hanya menghubungi layanan yang kamu pakai: Yahoo Finance (harga), LRCLIB (lirik), Open-Meteo (cuaca), ESPN, Jolpica, MotoGP.com, dan Wikipedia (data serta foto olahraga), Google Translate atau MyMemory (hanya saat kamu memakai tab Translate, dan teks yang kamu ketik dikirim ke layanan itu), alamat iCal kalendermu, dan penyedia AI yang kamu pilih bila fitur itu dinyalakan.</p></details>
+            <details><summary>Kenapa notch mengecil saat saya membuka Chrome?</summary><p>Itu deteksi tab cerdas: notch mengecil jadi garis tipis hanya jika deretan tab browser sampai di bawah area notch. Dengan satu atau dua tab, notch tetap normal. Aplikasi yang diperlakukan seperti ini bisa diatur, dan fiturnya bisa dimatikan di Pengaturan.</p></details>
+            <details><summary>Kenapa namanya Kuncung?</summary><p>Kuncung adalah kata Jawa untuk jambul rambut yang dibiarkan tumbuh di dahi anak. Notch pun menggantung di tepi atas layar, persis seperti kuncung di dahi. Wajah bulat berponi di sisi kiri notch adalah maskotnya: matanya mengikuti kursormu.</p></details>
+            <details><summary>Dari mana data olahraganya, dan apakah gratis?</summary><p>Dari API publik tanpa API key: ESPN untuk sepak bola, Jolpica untuk F1, dan situs hasil resmi MotoGP.com untuk MotoGP, Moto2, dan Moto3. Foto pembalap F1 berasal dari Wikipedia, foto MotoGP dari motogp.com. Datanya bisa tertunda beberapa menit, dan bila server sedang gagal aplikasi memakai data tersimpan terakhir.</p></details>
+            <details><summary>Bahasa apa saja yang didukung?</summary><p>English (bawaan) dan Indonesia. Ganti di Pengaturan &gt; Umum &gt; Bahasa; aplikasi memuat ulang sebentar. Teks, tanggal, angka, dan menu tray ikut berganti.</p></details>
+            <details><summary>Apakah mendukung banyak monitor?</summary><p>Saat ini notch tampil di monitor utama. Dukungan banyak monitor belum ada.</p></details>
+            <details><summary>Bagaimana cara mengganti pintasan atau mematikan fitur tertentu?</summary><p>Semua ada di Pengaturan: gaya, ukuran, apa yang berputar di notch tertutup, pintasan global, kalender, AI, notifikasi, dan autostart saat Windows menyala.</p></details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <div class="wrap foot-grid">
+        <div>
+          <a class="logo" href="#top"><svg viewBox="0 0 1024 1024" width="24" height="24" aria-hidden="true">
+  <!-- Ikon Kuncung: lingkaran dengan poni, kuncung, dan mata. Minimalis, flat. -->
+  <rect width="1024" height="1024" rx="232" fill="#FFC93C"/>
+  <g transform="translate(92 70) scale(8.4)">
+    <circle cx="50" cy="58" r="36" fill="#FFF3DB"/>
+    <!-- poni -->
+    <path d="M16.8 44 A36 36 0 0 1 83.2 44 C82 49 78 51 74 47 C70 43 65 43 62 48 C59 53 54 52 51 47 C48 42 43 42 40 48 C37 53 31 53 28 47 C25 43 20 42 16.8 44Z" fill="#2B1B14"/>
+    <!-- kuncung -->
+    <path d="M45.5 25.5 C38.5 15 42.5 3.5 53.5 3.2 C62.5 3 68.5 9.4 65.2 16.2 C63.4 11.4 58.2 10.2 55.2 13 C52.8 15.4 54.6 19.4 58.6 20.8 C55.8 25.8 49.6 27.8 45.5 25.5Z" fill="#2B1B14"/>
+    <!-- mata -->
+    <circle cx="38" cy="66" r="5.6" fill="#2B1B14"/>
+    <circle cx="62" cy="66" r="5.6" fill="#2B1B14"/>
+    <circle cx="39.9" cy="63.9" r="1.8" fill="#FFF3DB"/>
+    <circle cx="63.9" cy="63.9" r="1.8" fill="#FFF3DB"/>
+  </g>
+</svg><span>Kuncung</span></a>
+          <p>Dibuat dengan Tauri, Rust, dan React.<br />Replika pada halaman ini memakai data demo.</p>
+        </div>
+        <nav aria-label="Tautan footer">
+          <a href="https://github.com/wicakhendrik/kuncung" rel="noopener">GitHub</a>
+          <a href="#unduh">Unduh</a>
+          <a href="https://github.com/wicakhendrik/kuncung/issues" rel="noopener">Laporkan masalah</a>
+        </nav>
+        <p class="fine">Data pihak ketiga: Yahoo Finance, LRCLIB, Open-Meteo, ESPN, Jolpica, MotoGP.com, Wikipedia, Google Translate, MyMemory. Nama dan merek lain milik pemiliknya masing-masing.</p>
+      </div>
+    </footer>
+
+    <div class="toasts" id="toasts" role="status" aria-live="polite"></div>
+    <script src="assets/app.js" defer></script>
+    <script src="assets/kuncung.js" defer></script>
+  </body>
+</html>
+
+
